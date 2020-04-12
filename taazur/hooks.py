@@ -139,5 +139,20 @@ fixtures = [
                  'Employee-cost_center'
                 ]
             ]
-    ]}
+        ]
+    },
+    {
+        "doctype": "Property Setter",
+        "filters": [
+            [
+                "name",
+                "in",
+                [
+
+                 'Payroll Entry-cost_center-hidden',
+                 'Payroll Entry-cost_center-reqd'
+                ]
+            ]
+        ]
+    }
 ]
