@@ -1,0 +1,18 @@
+include MANIFEST.in
+include requirements.txt
+include *.json
+include *.md
+include *.py
+include *.txt
+recursive-include taazur *.css
+recursive-include taazur *.csv
+recursive-include taazur *.html
+recursive-include taazur *.ico
+recursive-include taazur *.js
+recursive-include taazur *.json
+recursive-include taazur *.md
+recursive-include taazur *.png
+recursive-include taazur *.py
+recursive-include taazur *.svg
+recursive-include taazur *.txt
+recursive-exclude taazur *.pyc
