@@ -196,8 +196,6 @@ class PayrollEntry(Document):
 		salary_components = self.get_salary_components(component_type, salary_slip)
 		if salary_components:
 			component_dict = {}
-			print("SALARY COMPONNEEEEEEENTS")
-			print(salary_components)
 			for item in salary_components:
 				add_component_to_accrual_jv_entry = True
 				if component_type == "earnings":
@@ -207,8 +205,6 @@ class PayrollEntry(Document):
 				if add_component_to_accrual_jv_entry:
 					component_dict[item['salary_component']] = component_dict.get(item['salary_component'], 0) + item['amount']
 			account_details = self.get_account(component_dict = component_dict)
-			print("ACCCOUNTS")
-			print(account_details)
 			return account_details
 
 	def get_account(self, component_dict = None):
@@ -231,7 +227,6 @@ class PayrollEntry(Document):
 	def make_accrual_jv_entry(self):
 		self.check_permission('write')
 		salary_slips = self.get_sal_slip_list(ss_status=1, as_dict=True)
-		print(salary_slips)
 		journal_entry = frappe.new_doc('Journal Entry')
 		journal_entry.voucher_type = 'Journal Entry'
 		journal_entry.user_remark = _('Accrual Journal Entry for salaries from {0} to {1}') \
@@ -249,10 +244,6 @@ class PayrollEntry(Document):
 			deductions = self.get_salary_component_total(component_type = "deductions",salary_slip = salary_slip) or {}
 			loan_details = self.get_loan_details()
 			jv_name = ""
-			print("EARNIIIIIIIIIINGS")
-			print(earnings)
-			print("DEDUCTIONSSSs")
-			print(deductions)
 			if earnings or deductions:
 
 				# Earnings
@@ -312,8 +303,6 @@ class PayrollEntry(Document):
 		journal_entry.save()
 
 		try:
-			print("JOURNAL ENTRY")
-			print(journal_entry.__dict__)
 			journal_entry.submit()
 			jv_name = journal_entry.name
 			self.update_salary_slip_status(jv_name = jv_name)
